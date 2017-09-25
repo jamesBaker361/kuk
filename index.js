@@ -1,3 +1,5 @@
+'use strict';
+
 request.post({
     url: "https://api.kik.com/v1/config",
     auth: {
@@ -22,7 +24,7 @@ let http = require('http');
 let Bot  = require('@kikinteractive/kik');
 let express=require('express');
 
-app=express();
+let app=express();
 
 app.get('/',function(req,res){
     res.sendFile(__dirname+'index.html');
