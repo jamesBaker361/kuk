@@ -1,19 +1,44 @@
-'use strict';
+request.post({
+    url: "https://api.kik.com/v1/config",
+    auth: {
+        user: "stornettatron3000",
+        pass: "973c4a39-a9dd-4cd1-86c4-2701f1e8ac39"
+    },
+    json: {
+        "webhook": "http://kuk-drkikbot.193b.starter-ca-central-1.openshiftapps.com/", 
+        "features": {
+            "receiveReadReceipts": false, 
+            "receiveIsTyping": false, 
+            "manuallySendReadReceipts": false, 
+            "receiveDeliveryReceipts": false
+        }
+    }
+}, function(){
+
+});
 
 let util = require('util');
 let http = require('http');
 let Bot  = require('@kikinteractive/kik');
+let express=require('express');
+
+app=express();
+
+app.get('/',function(req,res){
+    res.sendFile(__dirname+'index.html');
+})
 
 // Configure the bot API endpoint, details for your bot
 let bot = new Bot({
     username: 'stornettatron3000',
     apiKey: '973c4a39-a9dd-4cd1-86c4-2701f1e8ac39',
-    baseUrl: 'https://kik-echobot.ngrok.io/'
+    baseUrl: 'http://kuk-drkikbot.193b.starter-ca-central-1.openshiftapps.com/'
 });
 
 bot.updateBotConfiguration();
 
 bot.onTextMessage((message) => {
+    console.log(message);
     message.reply(message.body);
 });
 
@@ -21,3 +46,4 @@ bot.onTextMessage((message) => {
 let server = http
     .createServer(bot.incoming())
     .listen(process.env.PORT || 8080);
+
