@@ -1,6 +1,6 @@
 'use strict';
 
-request.post({
+/*request.post({
     url: "https://api.kik.com/v1/config",
     auth: {
         user: "stornettatron3000",
@@ -17,7 +17,7 @@ request.post({
     }
 }, function(){
 
-});
+});*/
 
 let util = require('util');
 let http = require('http');
